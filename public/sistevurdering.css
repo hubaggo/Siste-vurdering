@@ -1,0 +1,68 @@
+body {
+    /*endrer fargen på bakgrunnen av nettsiden til en turkis-type farge*/
+    background-color:aqua;
+  }
+  
+  .header {
+    /*Setter bakgrunnsfarge på headeren, i tilleg til å passe på at teksten er i midten av headeren*/
+    background-color:rgb(151, 235, 241);
+    text-align:center;
+    padding:10px;
+  }
+  
+  .topnav {
+    /*Setter bakgrunnsfargen på topnav baren*/
+    overflow: hidden;
+    background-color: #85c3ee;
+  }
+  
+  .topnav a {
+    /*Her endrer man linkene i navigsjon baren. Man kan, for eksempel, endre på fargen teksten har*/
+    float: left;
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  a{
+    /*Endrer fargen på linker til den samme fargen som bakgrunnen på nettsiden*/
+    color:aqua;
+  }
+  
+  a:hover {
+    background-color: #185cbb;
+  }
+  
+  .grid-container {
+    /*Her endrer man hvordan hele griden ser ut, for eksemempel, her har jeg endret bakgrunnsfargen til en litt mørk blå, som gjør at alle linkene er synlige*/
+      display: grid;
+      grid-template-columns: auto auto;
+      background-color: #2167F4;
+      padding: 10px;
+  }
+  .grid-item {
+    /*Her kan man endre mer spesifikt på de individuele bitene tekst i griden*/
+      background-color: #2167f4;
+      font-size: 30px;
+      text-align: center;
+    }
+  
+  #choice {
+      background-color: #2e74d5;
+      color: #000000;
+      border: 1px solid #000000;
+    }
+  
+  #play {
+      background-color: #2e74d5;
+      color: #000000;
+      border: 1px solid #000000;
+    }
+  
+  @media screen and (max-width:768px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+      }
+    }
