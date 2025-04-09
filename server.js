@@ -31,6 +31,10 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
+app.get("/hovedside", (req, res) => {
+  res.render("hovedside", { message: "" });
+});
+
 // 📌 Håndter registrering (lagrer bruker i SQLite)
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
@@ -73,7 +77,7 @@ app.post("/login", (req, res) => {
 
     if (match) {
       req.session.user = user;
-      res.send(`<h2>Velkommen, ${username}!</h2><a href='/logout'>Logg ut</a>`);
+      res.redirect("/hovedside");
     } else {
       res.render("login", { message: "Feil passord!" });
     }
