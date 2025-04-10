@@ -28,11 +28,11 @@ body {
   
   a{
     /*Endrer fargen på linker til den samme fargen som bakgrunnen på nettsiden*/
-    color:aqua;
+    color:rgb(170, 0, 255);
   }
   
   a:hover {
-    background-color: #185cbb;
+    background-color: #85c3ee;
   }
   
   .grid-container {
