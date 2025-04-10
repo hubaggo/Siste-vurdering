@@ -31,6 +31,10 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
+app.get("/konto", (req, res) => {
+  res.render("konto", { message: "" });
+});
+
 app.get("/hovedside", (req, res) => {
   res.render("hovedside", { message: "" });
 });
