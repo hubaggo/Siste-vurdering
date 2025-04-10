@@ -23,7 +23,7 @@ app.use(
 
 // 📌 Rute: Hovedside (Login)
 app.get("/", (req, res) => {
-  res.render("login", { message: "" });
+  res.render("index", { message: "" });
 });
 
 // 📌 Rute: Registrering
@@ -31,8 +31,8 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
-app.get("/index", (req, res) => {
-  res.render("index", { message: "" });
+app.get("/konto", (req, res) => {
+  res.render("konto", { message: "" });
 });
 
 // 📌 Håndter registrering (lagrer bruker i SQLite)
@@ -65,21 +65,21 @@ app.post("/register", async (req, res) => {
 });
 
 // 📌 Håndter innlogging (verifiserer bruker fra SQLite)
-app.post("/login", (req, res) => {
+app.post("/index", (req, res) => {
   const { username, password } = req.body;
 
   db.get("SELECT * FROM users WHERE username = ?", [username], async (err, user) => {
     if (!user) {
-      return res.render("login", { message: "Brukeren finnes ikke!" });
+      return res.render("index", { message: "Brukeren finnes ikke!" });
     }
 
     const match = await bcrypt.compare(password, user.password);
 
     if (match) {
       req.session.user = user;
-      res.redirect("/index");
+      res.redirect("konto");
     } else {
-      res.render("login", { message: "Feil passord!" });
+      res.render("index", { message: "Feil passord!" });
     }
   });
 });
