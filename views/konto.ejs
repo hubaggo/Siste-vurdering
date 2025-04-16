@@ -13,12 +13,16 @@
         <div class="topnav">
             <a href="/hovedside">Prosjekter</a>
             <a href="/Interaktiv/Interaktiv historie25.html">Interaktiv historie</a>
+            <a href="/logout" style="float:right">Logg ut</a>
         </div>
         <h2>Endre brukernavn og passord</h2>
         <form action="/endre" method="POST">
             <input type="text" name="newusername" placeholder="Nytt brukernavn" required><br>
             <input type="password" name="newpassword" placeholder="Nytt passord" required><br>
             <button type="submit">Endre</button>
+        </form>
+        <form onsubmit="return confirm('Er du sikker?')" action="/slett" method="POST">
+            <button type="submit" id="slett">Slett bruker</button>
         </form>
     </body>
 </html>

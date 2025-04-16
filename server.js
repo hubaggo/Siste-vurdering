@@ -92,6 +92,10 @@ app.post("/endre", async (req, res) => {
   }
 });
 
+app.post("/slett", async (req, res) => {
+  
+})
+
 // 📌 Håndter innlogging (verifiserer bruker fra SQLite)
 app.post("/index", (req, res) => {
   const { username, password } = req.body;
