@@ -68,6 +68,30 @@ app.post("/register", async (req, res) => {
   }
 });
 
+app.post("/endre", async (req, res) => {
+  const { newusername, newpassword } = req.body;
+  const newsaltRounds = 12;
+
+  try {
+    const newhashedPassword = await bcrypt.hash(newpassword, newsaltRounds);
+
+        if (req.session && req.session.user) {
+          const id = req.session.user.id;
+          db.run("UPDATE users SET username = ?, password = ? WHERE id = ?", [newusername, newhashedPassword, id], (err) => {
+            if (err) {
+              console.error("Feil ved endringen;", err.message);
+              return res.send("Feil ved endringen.");
+            }
+            res.redirect("/konto");
+          })
+        }
+      
+  } catch (err) {
+    console.error(err);
+    res.send("Feil ved registrering.");
+  }
+});
+
 // 📌 Håndter innlogging (verifiserer bruker fra SQLite)
 app.post("/index", (req, res) => {
   const { username, password } = req.body;
