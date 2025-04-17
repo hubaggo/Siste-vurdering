@@ -21,6 +21,23 @@ app.use(
   })
 );
 
+//Sikrer at innlogging er nødvendig for å få tilgang til noen deller av nettsiden
+app.use((req, res, next) => {
+  const lov = ["/register", "/index", "/sistevurdering.css"];
+  let eralltidlov = (req.path === "/");
+  for (i = 0; i<lov.length; i++) {
+    if (req.path.startsWith(lov[i])) {
+      eralltidlov = true;
+    }
+  }
+  if (eralltidlov || req.session.user) {
+    return next();
+  }
+  else {
+    res.redirect("/");
+  }
+});
+
 // 📌 Rute: Hovedside (Login)
 app.get("/", (req, res) => {
   res.render("index", { message: "" });
@@ -59,7 +76,10 @@ app.post("/register", async (req, res) => {
           console.error("Feil ved registrering:", err.message);
           return res.send("Feil ved registrering.");
         }
-        res.redirect("/");
+        db.get("SELECT * FROM users WHERE username = ?", [username], async (err, user) => {
+          req.session.user = user;
+          res.redirect("/hovedside");
+        })
       });
     });
   } catch (err) {
@@ -88,12 +108,23 @@ app.post("/endre", async (req, res) => {
       
   } catch (err) {
     console.error(err);
-    res.send("Feil ved registrering.");
+    res.send("Feil ved endring.");
   }
 });
 
 app.post("/slett", async (req, res) => {
-  
+  if (req.session && req.session.user) {
+    const id = req.session.user.id;
+    db.run("DELETE FROM users WHERE id = ?", [id], (err) => {
+      if (err) {
+        console.error("Feil ved sletting;", err.message);
+        return res.send("Feil ved sletting.");
+      }
+      req.session.destroy(() => {
+        res.redirect("/");
+      });
+    })
+  }
 })
 
 // 📌 Håndter innlogging (verifiserer bruker fra SQLite)
