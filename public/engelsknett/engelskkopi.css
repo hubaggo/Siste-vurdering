@@ -1,0 +1,85 @@
+body {
+    background-color:rgb(0, 0, 0);/*Changes background color to black*/
+    font-family: "quicksand", sans-serif;/*Enables a new font in all connected html sites*/
+    font-size:medium;/*Determines the size of the text*/
+}
+
+.header {
+    background-color:#3a3d40;/*Sets the background color of the header to gray*/
+    text-align:center; /*Aligns the tex in the header to be in the middle*/
+    padding:10px; /*Sets the distance betwen text in the header*/
+    color: #ffffff; /*The color of text in the header*/
+}
+
+a:link {
+    color:rgb(82, 218, 218); /*Sets a specified color to links*/
+}
+
+a:any-link {
+    color: rgb(82, 218, 218); /*Sets a specified color to ALL links*/
+}
+
+.topnav {
+    overflow: hidden; 
+    background-color: #3a3d40; /*Sets the background color of the navigation bar*/
+}
+
+.topnav a {
+    float: left;
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.topnav a:hover {
+    background-color: #185cbb;
+}
+
+.column {
+    /*float: left;*/
+    width: 30%;
+    padding: 15px;
+    color: #ffffff;
+  }
+
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#hobbiton {
+    background-image: url(hobbiton.jpg);
+    background-repeat: no-repeat;
+}
+
+/* "andreKolonne" er et unikt element fra en av kolonene i newzealandmain, og her kan jeg endre på bakgrundsb33ildet i bare den dellen av nettsiden */
+#bilde {
+    background-image: url(the\ mãori.jpg);
+    background-repeat: no-repeat;
+    float: center;
+    width: 1200px;
+    height: 500px;
+    padding: 15px;
+    color:#ffffff;
+    background-color: rgba(0, 0, 0, 0.1)
+}
+
+.footer {
+    background-color: #3a3d40;
+    text-align: center;
+    padding: 10px;
+    color: #ffffff;
+    /*position:absolute;
+    margin-top: 65%;*/
+    width: 100%;
+  }
+
+@media screen and (max-width:600px) {
+    .column, .topnav a, .header, .footer {
+      width: 100%;
+    }
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
