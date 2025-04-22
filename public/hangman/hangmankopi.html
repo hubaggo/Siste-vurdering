@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="no">
+    <head> <!--I Head har jeg endret titelen på nettsiden til "Hjem", linket html filen med css filen og gjort det mulig å bruke Æ, Ø, Å(i den rekefølgen)-->
+        <title>Hangman</title>
+        <link rel="stylesheet" href="../sistevurdering.css">
+        <meta charset="utf-8">
+        <script src="hangmankopi.js"></script>
+    </head>
+    <!--Gjør dette litt finere, og hook det opp til resten av nettsidene-->
+    <body onload="HM()">
+        <div class="header">
+            <h1>Hangman</h1>
+        </div>
+        <div class="hangman">
+            <div id="ord">
+                <input type="text" id="gjettInput" maxlength="1">
+                <button id="gjettKnapp">Gjett en bokstav!</button>
+                <button id="ferdigknap" onclick="location.reload()">Trykk for å starte på nytt</button>
+                <div id="resultat"></div>
+            </div>
+            <div id="gjetteplass"></div>
+            <div id="feilplass"></div>
+            <div id="bilder">
+                <img class="hangmanbilde" src="Lag 1.png" alt="lag1" id="lag1">
+                <img class="hangmanbilde" src="Lag 2.png" alt="lag2" id="lag2">
+                <img class="hangmanbilde" src="Lag 3.png" alt="lag3" id="lag3">
+                <img class="hangmanbilde" src="Lag 4.png" alt="lag4" id="lag4">
+                <img class="hangmanbilde" src="Lag 5.png" alt="lag5" id="lag5">
+                <img class="hangmanbilde" src="Lag 6.png" alt="lag6" id="lag6">
+                <img class="hangmanbilde" src="Lag 7.png" alt="lag7" id="lag7">
+            </div>
+        </div>
+    </body>
+</html>

@@ -72,3 +72,20 @@ body {
         grid-template-columns: 1fr;
       }
     }
+  
+    #bilder{
+      position: relative;
+      margin-top: 40px;
+      margin-bottom: 50px;
+      width: 300px;
+    }
+  
+    .hangman .hangmanbilde {
+      display: none;
+      position: absolute;
+      width: 100%;
+    }
+  
+    #ferdigknap {
+      display: none;
+    }
