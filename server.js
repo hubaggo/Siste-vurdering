@@ -112,6 +112,17 @@ app.post("/endre", async (req, res) => {
   }
 });
 
+app.post("/kommentar"), async (req, res) => {
+  const kommentar = req.body;
+  const id = req.session.user.id;
+  db.run("INSERT INTO comments SET id = ?, kommentar = ?", [id, kommentar], (err) => {
+    if (err) {
+      console.error("Feil i kommentering", err.message);
+      return res.send("Feil i kommentering.");
+    }
+  })
+}
+
 app.post("/slett", async (req, res) => {
   if (req.session && req.session.user) {
     const id = req.session.user.id;
