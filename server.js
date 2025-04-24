@@ -112,16 +112,18 @@ app.post("/endre", async (req, res) => {
   }
 });
 
-app.post("/kommentar"), async (req, res) => {
-  const kommentar = req.body;
-  const id = req.session.user.id;
-  db.run("INSERT INTO comments SET id = ?, kommentar = ?", [id, kommentar], (err) => {
+app.post("/kommentar", async (req, res) => {
+  const form = req.body;
+  const kommentar = form.kommentar;
+  const brukerid = req.session.user.id;
+  db.run("INSERT INTO comments (userid, kommentar) VALUES (?, ?)", [brukerid, kommentar], (err) => {
     if (err) {
       console.error("Feil i kommentering", err.message);
       return res.send("Feil i kommentering.");
     }
+    res.redirect("/hovedside");
   })
-}
+})
 
 app.post("/slett", async (req, res) => {
   if (req.session && req.session.user) {
