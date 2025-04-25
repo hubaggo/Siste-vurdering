@@ -53,7 +53,14 @@ app.get("/konto", (req, res) => {
 });
 
 app.get("/hovedside", (req, res) => {
-  res.render("hovedside", { message: "" });
+  db.all("SELECT kommentar, username FROM comments ORDER BY id DESC", (err, rows) => {
+    if (err) {
+      console.error("Feil ved henting av kommentarer:", err.message);
+      return res.send("Feil ved henting av kommentarer.");
+    }
+  
+    res.render("hovedside", { meldinger: rows, message: "" });
+  });
 });
 
 // 📌 Håndter registrering (lagrer bruker i SQLite)
@@ -116,7 +123,8 @@ app.post("/kommentar", async (req, res) => {
   const form = req.body;
   const kommentar = form.kommentar;
   const brukerid = req.session.user.id;
-  db.run("INSERT INTO comments (userid, kommentar) VALUES (?, ?)", [brukerid, kommentar], (err) => {
+  const brukernavn = req.session.user.username;
+  db.run("INSERT INTO comments (userid, kommentar, username) VALUES (?, ?, ?)", [brukerid, kommentar, brukernavn], (err) => {
     if (err) {
       console.error("Feil i kommentering", err.message);
       return res.send("Feil i kommentering.");

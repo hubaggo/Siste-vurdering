@@ -24,14 +24,19 @@
             <div class="grid-item">
                 <h2>Feedback</h2> 
                 <form action="/kommentar" method="POST">
-                    <p><input type="text" name="kommentar" placeholder="Skriv eventuel feedback her"></p>
+                    <p><input type="text" name="kommentar" placeholder="Skriv eventuel feedback"></p>
                     <p><button type="submit">Send</button></p>
                 </form>
             </div>
             <div class="grid-item">
                 <div class="grid-container">
-                    <div class="grid-item"><h2>Andres feedback</h2></div>
-                    <div class="grid-item"></div>
+                    <div class="grid-item"><h2>Andres feedback:</h2>
+                        <ul>
+                          <% for (let i = 0; i < meldinger.length; i++) { %>
+                            <li><%= meldinger[i].username %><%= meldinger[i].kommentar %></li>
+                          <% } %>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
