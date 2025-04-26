@@ -33,7 +33,7 @@
                     <div class="grid-item"><h2>Andres feedback:</h2>
                         <ul>
                           <% for (let i = 0; i < meldinger.length; i++) { %>
-                            <li><%= meldinger[i].username %><%= meldinger[i].kommentar %></li>
+                            <li type="none"><span class="kommentarnavn"><%= meldinger[i].username %>:</span> <span class="kommentarinnhold"><%= meldinger[i].kommentar %> - </span><span class="klokkeslett"></span></li>
                           <% } %>
                         </ul>
                     </div>

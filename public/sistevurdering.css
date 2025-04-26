@@ -1,6 +1,7 @@
 body {
     /*endrer fargen på bakgrunnen av nettsiden til en turkis-type farge*/
     background-color:aqua;
+    list-style-type: none;
   }
   
   .header {
@@ -48,6 +49,9 @@ body {
       font-size: 30px;
       text-align: center;
     }
+    .grid-item >ul{
+      text-align: left;
+    }
   
   #choice {
       background-color: #2e74d5;
@@ -88,4 +92,8 @@ body {
   
     #ferdigknap {
       display: none;
+    }
+
+    .kommentarnavn {
+      font-weight: bold;
     }
