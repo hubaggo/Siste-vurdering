@@ -121,10 +121,25 @@ app.post("/endre", async (req, res) => {
 
 app.post("/kommentar", async (req, res) => {
   let date = new Date();
-    let t = date.getHours();
-    let m = date.getMinutes();
-    let må = date.getMonth();
-    let d = date.getDate();
+  let t = date.getHours();
+  let m = date.getMinutes();
+  let må = date.getMonth();
+  let d = date.getDate();
+    if (t < 10) {
+      t = "0" + t;
+    }
+
+    if (m < 10) {
+      m = "0" + m;
+    }
+    
+    if (må < 10) {
+      må = "0" + må;
+    }
+
+    if (d < 10) {
+      d = "0" + d;
+    }
   const form = req.body;
   const kommentar = form.kommentar;
   const brukerid = req.session.user.id;
