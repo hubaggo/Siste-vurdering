@@ -125,6 +125,8 @@ app.post("/kommentar", async (req, res) => {
   let m = date.getMinutes();
   let må = date.getMonth();
   let d = date.getDate();
+  må = må + 1;
+
     if (t < 10) {
       t = "0" + t;
     }
@@ -152,6 +154,10 @@ app.post("/kommentar", async (req, res) => {
     }
     res.redirect("/hovedside");
   })
+})
+
+app.post("/svar", async (req, res) => {
+  
 })
 
 app.post("/slett", async (req, res) => {
