@@ -37,10 +37,18 @@
                                 <p id="svarstyle">
                                     <form action="/svar" method="POST">
                                         <p><input type="text" name="svarinput" placeholder="Hva synes du?"><button type="submit">Send</button></p>
+                                        <input type="hidden" name="kommentarid" value="<%= meldinger[i].id %>">
                                     </form>
                                 </p>
+                                <% for (let j = 0; j < svar.length; j++) { 
+                                    if (svar[j].kommentarid === meldinger[i].id) {
+                                    %>
+                                    <li type="none"><span><%= svar[j].svartekst %></span></li>
+                                <% } 
+                                }%>
                             </li>
                           <% } %>
+                          
                         </ul>
                     </div>
                 </div>

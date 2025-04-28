@@ -53,14 +53,21 @@ app.get("/konto", (req, res) => {
 });
 
 app.get("/hovedside", (req, res) => {
-  db.all("SELECT kommentar, username, kommentartid FROM comments ORDER BY id DESC", (err, rows) => {
+  db.all("SELECT kommentar, username, kommentartid, id FROM comments ORDER BY id DESC", (err, meldinger) => {
     if (err) {
       console.error("Feil ved henting av kommentarer:", err.message);
       return res.send("Feil ved henting av kommentarer.");
     }
-  
-    res.render("hovedside", { meldinger: rows, message: "" });
+    db.all("SELECT svartekst, brukernavn, kommentarid FROM svar ORDER BY svarid DESC", (err2, svar) =>  {
+      if (err2) {
+        console.error("Feil ved henting av kommentarer:", err2.message);
+        return res.send("Feil ved henting av kommentarer.");
+      }
+      res.render("hovedside", { meldinger: meldinger, message: "", svar: svar });
+    });
+    
   });
+  
 });
 
 // 📌 Håndter registrering (lagrer bruker i SQLite)
@@ -157,7 +164,17 @@ app.post("/kommentar", async (req, res) => {
 })
 
 app.post("/svar", async (req, res) => {
-  
+  const form = req.body;
+  const tekst = form.svarinput;
+  const brukernavn = req.session.user.username;
+  const kommentarid = form.kommentarid;
+  db.run("INSERT INTO svar (svartekst, brukernavn, kommentarid) VALUES (?, ?, ?)",[tekst, brukernavn, kommentarid], (err) => {
+    if (err) {
+      console.error("Feil i kommentering", err.message);
+      return res.send("Feil i kommentering.");
+    }
+    res.redirect("/hovedside");
+  })
 })
 
 app.post("/slett", async (req, res) => {
