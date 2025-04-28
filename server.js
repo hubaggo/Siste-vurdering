@@ -53,7 +53,7 @@ app.get("/konto", (req, res) => {
 });
 
 app.get("/hovedside", (req, res) => {
-  db.all("SELECT kommentar, username FROM comments ORDER BY id DESC", (err, rows) => {
+  db.all("SELECT kommentar, username, kommentartid FROM comments ORDER BY id DESC", (err, rows) => {
     if (err) {
       console.error("Feil ved henting av kommentarer:", err.message);
       return res.send("Feil ved henting av kommentarer.");
@@ -120,11 +120,17 @@ app.post("/endre", async (req, res) => {
 });
 
 app.post("/kommentar", async (req, res) => {
+  let date = new Date();
+    let t = date.getHours();
+    let m = date.getMinutes();
+    let må = date.getMonth();
+    let d = date.getDate();
   const form = req.body;
   const kommentar = form.kommentar;
   const brukerid = req.session.user.id;
   const brukernavn = req.session.user.username;
-  db.run("INSERT INTO comments (userid, kommentar, username) VALUES (?, ?, ?)", [brukerid, kommentar, brukernavn], (err) => {
+  const kommentartid = " - " + "Lagt ut klokken: " + t + ":" + m + ", den " + d + "." + må;
+  db.run("INSERT INTO comments (userid, kommentar, username, kommentartid) VALUES (?, ?, ?, ?)", [brukerid, kommentar, brukernavn, kommentartid], (err) => {
     if (err) {
       console.error("Feil i kommentering", err.message);
       return res.send("Feil i kommentering.");
