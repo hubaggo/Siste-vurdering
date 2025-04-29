@@ -97,3 +97,11 @@ body {
     .kommentarnavn {
       font-weight: bold;
     }
+
+    .undersvar {
+      font-size:large;
+    }
+
+    .kommentarbunn {
+      margin-top: 25px;
+    }
